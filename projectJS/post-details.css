@@ -1,0 +1,28 @@
+body, p, ul, li {
+    margin:0;
+}
+.fatherDiv {
+    width: 100vw;
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: violet;
+    flex-direction: column;
+}
+.motherDiv {
+    width: 100vw;
+    height: 80vh;
+    background-color: darkseagreen;
+    display: flex;
+}
+.child {
+    width: 400px;
+    height: 300px;
+    border: #3a1b1b 1px solid;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    background-color: #4380ee;
+    border-radius: 10px;
+}

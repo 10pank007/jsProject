@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="user-details.css">
+</head>
+<body>
+<div id="fatherDiv"></div>
+<script>
+    // let infoAboutUser = document.createElement('div');
+    // infoAboutUser.classList.add('infoAboutUser');
+    // document.body.append(infoAboutUser)
+  let url = new URL(location.href).searchParams.get("value");
+  console.log(url);
+  fetch("https://jsonplaceholder.typicode.com/users/" + url).then(value => value.json())
+          .then( user => {
+            let fatherDiv = document.getElementById('fatherDiv');
+            fatherDiv.classList.add("fatherDiv");
+            let ul = document.createElement('ul');
+            creat(user, ul);
+            fatherDiv.append(ul);
+            let motherDiv = document.createElement('div');
+            motherDiv.classList.add("motherDiv")
+            document.body.append(motherDiv);
+            let button = document.createElement('button');
+            button.classList.add("mainButton");
+            button.innerText = "post of current user";
+            let childrenDiv = document.createElement("div");
+            childrenDiv.classList.add("childrenDiv")
+            motherDiv.append(button, childrenDiv);
+            let bool = true;
+            button.onclick = async function (ev) {
+                await fetch('https://jsonplaceholder.typicode.com/users/' + url +"/posts").then(value => value.json())
+                    .then(posts => {
+                        console.log(posts);
+                        if (bool) {
+                            for (let post of posts) {
+                                let childDiv = document.createElement("div");
+                                childDiv.classList.add("childDiv");
+                                let p = document.createElement("p");
+                                p.innerText = post.title;
+                                p.classList.add("paragraph");
+                                let button = document.createElement('button');
+                                button.classList.add("button");
+                                button.innerText = 'info about post';
+                                button.onclick = function (ev) {
+                                    location.href = 'post-details.html?postId=' + post.id + '&userId=' + url;
+                                }
+                                childDiv.append(p, button);
+                                childrenDiv.append(childDiv)
+                            }
+                            bool = !bool;
+                        } else {
+                            childrenDiv.innerHTML = '';
+                            bool = !bool;
+                        }
+                    })
+            }
+          });
+  function creat(arr, tag) {
+    for (let arrElement in arr) {
+      //console.log(typeof arrElement);
+      console.log();
+      if(typeof arr[arrElement] !=='object') {
+        let li = document.createElement('li');
+        li.innerText = arrElement + " - " + arr[arrElement];
+        tag.append(li)
+      } else {
+        let ul = document.createElement('ul');
+        ul.innerHTML = `<b>${arrElement}<b/>`
+        creat(arr[arrElement], ul);
+        tag.append(ul);
+      }
+    }
+  }
+</script>
+</body>
+</html>

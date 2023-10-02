@@ -1,0 +1,65 @@
+body, ul, li {
+    margin: 0;
+}
+.fatherDiv {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    background-color: forestgreen;
+    color: black;
+    justify-content: center;
+}
+.mainButton {
+    width: 90vw;
+    height: 5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border-radius: 10px;
+}
+.motherDiv {
+    width: 100vw;
+    height: 50vh;
+    display: flex;
+    background-color: silver;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.buttonElement {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.childrenDiv {
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.childrenDiv > .childDiv {
+    width: 250px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cyan;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+.childrenDiv > .childDiv p {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.button {
+    width: 105px;
+    height: 20px;
+    background-color: silver;
+    margin-bottom: 10px;
+    border-radius: 10px;
+}

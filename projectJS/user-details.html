@@ -5,19 +5,16 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>user-details</title>
     <link rel="stylesheet" href="user-details.css">
 </head>
 <body>
 <div id="fatherDiv"></div>
 <script>
-    // let infoAboutUser = document.createElement('div');
-    // infoAboutUser.classList.add('infoAboutUser');
-    // document.body.append(infoAboutUser)
-  let url = new URL(location.href).searchParams.get("value");
-  console.log(url);
-  fetch("https://jsonplaceholder.typicode.com/users/" + url).then(value => value.json())
-          .then( user => {
+    let url = new URL(location.href).searchParams.get("value");
+    console.log(url);
+    fetch("https://jsonplaceholder.typicode.com/users/" + url).then(value => value.json())
+        .then(user => {
             let fatherDiv = document.getElementById('fatherDiv');
             fatherDiv.classList.add("fatherDiv");
             let ul = document.createElement('ul');
@@ -34,7 +31,7 @@
             motherDiv.append(button, childrenDiv);
             let bool = true;
             button.onclick = async function (ev) {
-                await fetch('https://jsonplaceholder.typicode.com/users/' + url +"/posts").then(value => value.json())
+                await fetch('https://jsonplaceholder.typicode.com/users/' + url + "/posts").then(value => value.json())
                     .then(posts => {
                         console.log(posts);
                         if (bool) {
@@ -60,23 +57,22 @@
                         }
                     })
             }
-          });
-  function creat(arr, tag) {
-    for (let arrElement in arr) {
-      //console.log(typeof arrElement);
-      console.log();
-      if(typeof arr[arrElement] !=='object') {
-        let li = document.createElement('li');
-        li.innerText = arrElement + " - " + arr[arrElement];
-        tag.append(li)
-      } else {
-        let ul = document.createElement('ul');
-        ul.innerHTML = `<b>${arrElement}<b/>`
-        creat(arr[arrElement], ul);
-        tag.append(ul);
-      }
+        });
+
+    function creat(arr, tag) {
+        for (let arrElement in arr) {
+            if (typeof arr[arrElement] !== 'object') {
+                let li = document.createElement('li');
+                li.innerText = arrElement + " - " + arr[arrElement];
+                tag.append(li)
+            } else {
+                let ul = document.createElement('ul');
+                ul.innerHTML = `<b>${arrElement}<b/>`
+                creat(arr[arrElement], ul);
+                tag.append(ul);
+            }
+        }
     }
-  }
 </script>
 </body>
 </html>

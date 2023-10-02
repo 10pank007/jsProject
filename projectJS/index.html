@@ -5,7 +5,10 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>JSONPLASEHOLDER</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mukta:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
@@ -18,8 +21,6 @@
     title.append(h1);
     document.body.append(title);
     fetch('https://jsonplaceholder.typicode.com/users').then(value => value.json()).then(users => {
-        // let content = document.createElement(div);
-        // document.body.append(content)
         let main = document.createElement('div');
         main.classList.add('main');
         document.body.append(main);
@@ -29,9 +30,9 @@
         main2.classList.add("main2");
         main.append(main1, main2);
         for (let i = 0; i < users.length; i++) {
+            let element = document.createElement('div');
+            element.classList.add("element");
             if(i < users.length / 2) {
-                let element = document.createElement('div');
-                element.classList.add("element");
                 element.innerText = `${users[i].id}) ${users[i].name}`;
                 let button = document.createElement('button');
                 button.innerText = 'click';
@@ -40,8 +41,6 @@
                 }
                 main1.append(element, button)
             } else {
-                let element = document.createElement('div');
-                element.classList.add("element");
                 element.innerText = `${users[i].id}) ${users[i].name}`;
                 let button = document.createElement('button');
                 button.innerText = 'click';
